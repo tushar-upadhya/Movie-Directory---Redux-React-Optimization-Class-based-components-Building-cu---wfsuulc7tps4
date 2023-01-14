@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/App.css";
-import MovieProvider from "./MovieContext";
 import Movie from "./Movie";
 import MoviesList from "./MoviesList";
-
+export const tmp = React.createContext();
+export const tmp2 = React.createContext();
 const App = () => {
+  const [movie, setMovie] = useState({});
   return (
-    <MovieProvider>
-      <div id="main">
-        <h1>Movie List</h1>
+    <div id="main">
+      <h1>Movie List</h1>
+      <tmp.Provider value={setMovie}>
         <MoviesList />
+      </tmp.Provider>
+      <tmp2.Provider value={movie}>
         <Movie />
-      </div>
-    </MovieProvider>
+      </tmp2.Provider>
+    </div>
   );
 };
 
