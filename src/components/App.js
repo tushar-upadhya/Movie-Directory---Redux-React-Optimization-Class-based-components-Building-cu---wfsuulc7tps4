@@ -4,6 +4,7 @@ import Movie from "./Movie";
 import MoviesList from "./MoviesList";
 export const tmp = React.createContext();
 export const tmp2 = React.createContext();
+
 const App = () => {
   const [movie, setMovie] = useState({});
   return (
