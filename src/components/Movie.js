@@ -1,27 +1,25 @@
 import React from "react";
-import { tmp2 } from "./App";
+import { MovieContext } from "./MovieContext";
+
 class Movie extends React.Component {
+  static contextType = MovieContext;
+
   render() {
-    // If no movie is selected, show message - "Invalid Id".
+    const { movies, selectedMovieId } = this.context;
+    const movie = movies.find((movie) => movie.id === selectedMovieId);
 
     return (
-      <tmp2.Consumer>
-        {(item) => {
-          return (
-            <div id="movie-banner">
-              {JSON.stringify(item) === "{}" ? (
-                "Invalid Id"
-              ) : (
-                <>
-                  <h2>{item.title}</h2>
-                  <h2>{item.year}</h2>
-                  <h2>{item.director}</h2>
-                </>
-              )}
-            </div>
-          );
-        }}
-      </tmp2.Consumer>
+      <div id="movie-banner">
+        {movie ? (
+          <>
+            <h2>{movie.title}</h2>
+            <h2>{movie.year}</h2>
+            <h2>{movie.director}</h2>
+          </>
+        ) : (
+          <h1>Invalid Id</h1>
+        )}
+      </div>
     );
   }
 }
